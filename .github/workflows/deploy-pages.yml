@@ -1,13 +1,3 @@
-# Build the Vite app and publish dist/ to GitHub Pages.
-#
-# After pushing:
-# 1. Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
-# 2. Settings → Secrets and variables → Actions:
-#    - Add repository secrets matching your VITE_* env (same names as in .env).
-# 3. Settings → Secrets and variables → Actions → Variables tab:
-#    - VITE_BASE_PATH = /YOUR_REPO_NAME/  (with slashes; only if the site is at
-#      https://USER.github.io/YOUR_REPO_NAME/ — omit or use / for a root user site)
-#
 name: Deploy to GitHub Pages
 
 on:
@@ -40,7 +30,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH }}
+          VITE_BASE_PATH: ${{ vars.VITE_BASE_PATH != '' && vars.VITE_BASE_PATH || format('/{0}/', github.event.repository.name) }}
           VITE_GOOGLE_CLIENT_ID: ${{ secrets.VITE_GOOGLE_CLIENT_ID }}
           VITE_RECIPES_FILE_ID: ${{ secrets.VITE_RECIPES_FILE_ID }}
           VITE_RECIPES_FOLDER_ID: ${{ secrets.VITE_RECIPES_FOLDER_ID }}
