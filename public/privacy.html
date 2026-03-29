@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Privacy policy — Recipes app</title>
+    <style>
+      body {
+        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        line-height: 1.55;
+        max-width: 42rem;
+        margin: 0 auto;
+        padding: 1.5rem;
+        color: #1a1a1a;
+      }
+      h1 {
+        font-size: 1.35rem;
+      }
+      h2 {
+        font-size: 1.05rem;
+        margin-top: 1.5rem;
+      }
+      p,
+      ul {
+        margin: 0.65rem 0;
+      }
+      ul {
+        padding-left: 1.25rem;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Privacy policy</h1>
+    <p>
+      This page describes how the <strong>Recipes</strong> web application (“the app”) handles information when you
+      use Google sign-in.
+    </p>
+
+    <h2>What the app does</h2>
+    <p>
+      Recipe files live in <strong>Google Drive under the app publisher’s account</strong>. The publisher shares those
+      files only with people they invite. The app is not a general-purpose Drive browser and is not meant to read your
+      unrelated personal files.
+    </p>
+
+    <h2>Google account and OAuth</h2>
+    <p>
+      Google’s sign-in flow always issues credentials for <strong>the Google account that is signing in</strong> (that is
+      how OAuth works). The app then uses Google’s <strong>Drive API read-only</strong> scope only so your browser can
+      download the <strong>same recipe documents the publisher already shared with that account</strong>. You only see
+      content you could already open in Drive because it was shared with you.
+    </p>
+    <p>
+      Google’s privacy policy applies to how Google processes account and API usage:
+      <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.
+    </p>
+
+    <h2>Data on your device</h2>
+    <p>To work in your browser, the app may store:</p>
+    <ul>
+      <li>
+        A short-lived <strong>access token</strong> in <strong>session storage</strong> so you stay signed in until you
+        close the browser tab or session, as implemented by the app.
+      </li>
+      <li>
+        <strong>Preferences</strong> (e.g. display settings or favorites) in <strong>local storage</strong> on your
+        device only.
+      </li>
+    </ul>
+    <p>These values are not sent to a separate backend operated by this app for analytics or advertising.</p>
+
+    <h2>No server-side account database</h2>
+    <p>
+      This project is deployed as a static site. The app does not create a separate user database on a custom server.
+      Requests go between your browser and Google’s services; which recipe files are visible follows the publisher’s
+      sharing settings in Drive.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For questions about this policy or the app, contact the person or organization that published this deployment.
+    </p>
+
+    <p style="margin-top: 2rem; font-size: 0.9rem; color: #555">
+      Last updated: March 2026
+    </p>
+  </body>
+</html>

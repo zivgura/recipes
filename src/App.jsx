@@ -174,6 +174,14 @@ export default function App() {
           >
             התחבר עם Google
           </button>
+          <a
+            href={`${import.meta.env.BASE_URL}privacy.html`}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ fontSize: 12, color: textSub, fontWeight: 600 }}
+          >
+            Privacy policy (English)
+          </a>
         </div>
       )}
 
