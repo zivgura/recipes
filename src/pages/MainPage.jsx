@@ -46,7 +46,7 @@ export function MainPage({
       <div style={{ padding: "36px 20px 0", background: bg }}>
         <div style={{ marginBottom: 20 }}>
           <div style={{ fontSize: 13, fontWeight: 700, color: C.mint, letterSpacing: "0.06em", marginBottom: 6 }}>
-            🍴 ספר המתכונים
+            Recipes · 🍴 ספר המתכונים
           </div>
           <h1
             style={{
