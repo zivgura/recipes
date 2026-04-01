@@ -153,6 +153,9 @@ export default function App() {
           }}
           dir="rtl"
         >
+          <p style={{ fontSize: 12, fontWeight: 800, color: C.mint, textAlign: "center", letterSpacing: "0.08em" }}>
+            Recipes
+          </p>
           <p style={{ fontSize: 22, fontWeight: 900, textAlign: "center" }}>התחברות</p>
           <p style={{ fontSize: 14, color: textSub, textAlign: "center", maxWidth: 360, lineHeight: 1.5 }}>
             המתכונים נשמרים ב-Google Drive. רק מוזמנים שקיבלו שיתוף (Viewer ומעלה) יכולים לצפות — יש להתחבר עם אותו חשבון Google.
