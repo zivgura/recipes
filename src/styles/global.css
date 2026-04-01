@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+button,
+input {
+  -webkit-tap-highlight-color: transparent;
+  transition: all 0.14s;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}

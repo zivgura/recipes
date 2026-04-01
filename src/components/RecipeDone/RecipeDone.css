@@ -1,0 +1,19 @@
+.recipe-done {
+  text-align: center;
+  padding: 28px 20px;
+  margin-top: 16px;
+  background: var(--color-brand-faint);
+  border-radius: 22px;
+  border: 1.5px solid var(--color-brand-border-medium);
+}
+
+.recipe-done__emoji {
+  font-size: 40px;
+  margin-bottom: 8px;
+}
+
+.recipe-done__title {
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--color-brand);
+}

@@ -1,0 +1,86 @@
+/**
+ * Design tokens — all color values live here.
+ * Theme switches via `data-theme="dark"` on the document root (see App.jsx).
+ */
+:root {
+  /* Brand */
+  --color-brand: #ff7043;
+  --color-brand-faint: #fff0ec;
+  --color-brand-light: #ffb39e;
+  --color-brand-border-subtle: #ff704322;
+  --color-brand-border-medium: #ff704344;
+  --color-accent: #e85d2f;
+  --color-accent-faint: #fff0ec;
+
+  /* Surfaces */
+  --color-page-bg: #fff9f7;
+  --color-card: #ffffff;
+  --color-surface-muted: #fff0ec;
+  --color-surface-elevated: #fff9f7;
+  --color-surface-checked: #fff0ec;
+  --color-sticky-header: #f6fdf8ee;
+  --color-row-pressed: #f0fdf4;
+
+  /* Borders & dividers */
+  --color-border: #0000000a;
+  --color-border-strong: #00000009;
+
+  /* Text */
+  --color-text: #23100a;
+  --color-text-secondary: #b07060;
+  --color-text-muted: #e0c0b8;
+  --color-text-on-brand: #ffffff;
+
+  /* Row / list (main) */
+  --color-row-title: #0f2318;
+  --color-row-meta: #b07060;
+  --color-row-chevron: #b0ccba;
+
+  /* Semantic */
+  --color-favorite: #ff6b6b;
+  --color-favorite-filter-bg: #ff6b6b22;
+  --color-danger-soft: #ff5e5e22;
+  --color-danger: #ff5e5e;
+
+  /* Warnings (step) */
+  --color-warning-bg: #ff8c0018;
+  --color-warning-border: #ff8c0044;
+  --color-warning-text: #e07000;
+
+  /* Shadows */
+  --shadow-card: 0 4px 32px #00000009;
+  --shadow-card-list: 0 2px 20px #00000008;
+  --shadow-theme-toggle: 0 4px 24px #00000018;
+
+  /* Misc */
+  --color-white: #ffffff;
+  --color-transparent: transparent;
+}
+
+[data-theme="dark"] {
+  --color-brand-faint: #ff704320;
+  --color-brand-light: #ff704355;
+  --color-accent-faint: #e85d2f20;
+
+  --color-page-bg: #160f0c;
+  --color-card: #1f1410;
+  --color-surface-muted: #2a1a14;
+  --color-surface-elevated: #2a1a14;
+  --color-surface-checked: #2a1a1488;
+  --color-sticky-header: #0e1812ee;
+  --color-row-pressed: #f0fdf422;
+
+  --color-border: #ffffff0a;
+
+  --color-text: #f5ede8;
+  --color-text-secondary: #8a6050;
+  --color-text-muted: #4a2820;
+
+  --color-row-title: #f0faf4;
+  --color-row-meta: #9e6a58;
+  --color-row-chevron: #3d6b52;
+
+  --shadow-card: none;
+  --shadow-card-list: none;
+  --shadow-theme-toggle: 0 4px 24px #00000060;
+}

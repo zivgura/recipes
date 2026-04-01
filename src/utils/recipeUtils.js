@@ -14,26 +14,28 @@ export const fmtAmt = (amount, scale) => {
   return v.toFixed(1);
 };
 
+/** @typedef {{ text: string, ingredient?: object, formattedAmount?: string }} StepTextSegment */
+
 export function annotateStep(text, ingredients, scale) {
   const noise = new Set(["את", "של", "עם", "על", "עד", "או", "לפי", "ללא", "כ", "הם", "הן", "זה", "זו", "יש", "לא"]);
   const entries = [];
-  for (const ing of ingredients) {
-    if (ing.amount === 0 && !ing.unit) continue;
-    const tokens = ing.name
+  for (const ingredient of ingredients) {
+    if (ingredient.amount === 0 && !ingredient.unit) continue;
+    const tokens = ingredient.name
       .replace(/[()]/g, "")
       .split(/[\s,/]+/)
-      .filter((t) => t.length >= 2 && !noise.has(t));
-    for (const tok of tokens) entries.push({ keyword: tok, ing });
+      .filter((token) => token.length >= 2 && !noise.has(token));
+    for (const token of tokens) entries.push({ keyword: token, ingredient });
   }
   entries.sort((a, b) => b.keyword.length - a.keyword.length);
-  const amtStr = (ing) => {
-    if (ing.amount === 0) return ing.unit || "";
-    const a = fmtAmt(ing.amount, scale);
-    return ing.unit ? `${a} ${ing.unit}` : a;
+  const formatScaledAmount = (ingredient) => {
+    if (ingredient.amount === 0) return ingredient.unit || "";
+    const a = fmtAmt(ingredient.amount, scale);
+    return ingredient.unit ? `${a} ${ingredient.unit}` : a;
   };
   const marked = new Array(text.length).fill(null);
   const matches = [];
-  for (const { keyword, ing } of entries) {
+  for (const { keyword, ingredient } of entries) {
     let pos = 0;
     while (pos < text.length) {
       const idx = text.indexOf(keyword, pos);
@@ -47,21 +49,26 @@ export function annotateStep(text, ingredients, scale) {
         }
       }
       if (!overlap) {
-        for (let i = idx; i < end; i++) marked[i] = ing;
-        matches.push({ start: idx, end, ing });
+        for (let i = idx; i < end; i++) marked[i] = ingredient;
+        matches.push({ start: idx, end, ingredient });
       }
       pos = idx + 1;
     }
   }
   if (matches.length === 0) return [{ text }];
   matches.sort((a, b) => a.start - b.start);
-  const segs = [];
+  /** @type {StepTextSegment[]} */
+  const segments = [];
   let cursor = 0;
-  for (const m of matches) {
-    if (m.start > cursor) segs.push({ text: text.slice(cursor, m.start) });
-    segs.push({ text: text.slice(m.start, m.end), ing: m.ing, amt: amtStr(m.ing) });
-    cursor = m.end;
+  for (const match of matches) {
+    if (match.start > cursor) segments.push({ text: text.slice(cursor, match.start) });
+    segments.push({
+      text: text.slice(match.start, match.end),
+      ingredient: match.ingredient,
+      formattedAmount: formatScaledAmount(match.ingredient),
+    });
+    cursor = match.end;
   }
-  if (cursor < text.length) segs.push({ text: text.slice(cursor) });
-  return segs;
+  if (cursor < text.length) segments.push({ text: text.slice(cursor) });
+  return segments;
 }

@@ -1,0 +1,13 @@
+.step-warning {
+  margin-top: 10px;
+  background: var(--color-warning-bg);
+  border: 1.5px solid var(--color-warning-border);
+  border-radius: 14px;
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-warning-text);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}

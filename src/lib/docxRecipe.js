@@ -217,7 +217,7 @@ function parseInstructionSections(lines) {
   return blocks.map((blockLines, i) => {
     const raw = blockLines.join(" ").replace(/\s+/g, " ").trim();
     const text = stripLeadingStepNumber(raw);
-    const sectionTitle = blocks.length === 1 ? "הכנה" : `שלב ${i + 1}`;
+    const sectionTitle = blocks.length === 1 ? "הכנה" : '';
     return {
       title: sectionTitle,
       steps: [
