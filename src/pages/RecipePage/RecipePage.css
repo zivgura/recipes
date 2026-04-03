@@ -102,6 +102,74 @@
   margin-bottom: 20px;
 }
 
+.recipe-page__layout-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.recipe-page__layout-label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.recipe-page__tab-bar--layout {
+  flex: 1;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+
+.recipe-page__tab-bar--content {
+  margin-bottom: 16px;
+}
+
+.recipe-page__tab-bar {
+  display: flex;
+  width: 100%;
+  gap: 4px;
+  padding: 5px;
+  margin-bottom: 16px;
+  border-radius: 999px;
+  background: var(--color-brand-faint);
+  border: 1.5px solid var(--color-brand-border-subtle);
+  box-sizing: border-box;
+}
+
+.recipe-page__tab {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-brand);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 11px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+
+.recipe-page__tab-bar--layout .recipe-page__tab {
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+.recipe-page__tab--active {
+  background: var(--color-card);
+  color: var(--color-accent);
+  box-shadow: 0 2px 12px #ff704318;
+}
+
+.recipe-page__tab:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
 .recipe-page__emoji {
   font-size: 56px;
   line-height: 1;
