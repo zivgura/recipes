@@ -14,8 +14,9 @@
 }
 
 .main-page__header-logout {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  top: 24px;
+  left: 24px;
 }
 
 .main-page__header-logout-btn {
