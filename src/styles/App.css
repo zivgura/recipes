@@ -10,10 +10,6 @@
   color: var(--color-text);
 }
 
-.app-fullscreen--gap-lg {
-  gap: 20px;
-}
-
 .app-fullscreen--gap-md {
   gap: 16px;
 }
@@ -38,7 +34,7 @@
 
 .app-screen {
   min-height: 100vh;
-  background: var(--color-page-bg);
+  background: var(--background-page);
   font-family: 'Nunito', sans-serif;
 }
 
@@ -57,7 +53,7 @@
 
 .app-loading {
   min-height: 100vh;
-  background: var(--color-page-bg);
+  background: var(--background-page);
   font-family: 'Nunito', sans-serif;
   display: flex;
   align-items: center;
@@ -65,20 +61,6 @@
   color: var(--color-text-secondary);
   font-size: 16px;
   font-weight: 700;
-}
-
-.app-auth-label {
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--color-brand);
-  text-align: center;
-  letter-spacing: 0.08em;
-}
-
-.app-auth-title {
-  font-size: 22px;
-  font-weight: 900;
-  text-align: center;
 }
 
 .app-auth-body {
@@ -109,17 +91,6 @@
 .app-btn-primary--sm {
   padding: 10px 20px;
   font-size: 14px;
-}
-
-.app-link-muted {
-  font-size: 12px;
-  color: var(--color-text-secondary);
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.app-link-muted:hover {
-  text-decoration: underline;
 }
 
 .app-error-detail {
@@ -178,4 +149,36 @@
   font-size: 22px;
   font-weight: 900;
   text-align: center;
+}
+
+.app-top-bar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 44px;
+  padding: 8px 16px;
+  background: var(--background-page);
+  border-bottom: 1px solid var(--border-lighter);
+  font-family: var(--font-family-primary), sans-serif;
+}
+
+.app-logout-btn {
+  margin: 0;
+  padding: 6px 2px;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: var(--font-size-small);
+  font-weight: 700;
+  color: var(--primary-dark);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.app-logout-btn:hover {
+  color: var(--primary-main);
 }

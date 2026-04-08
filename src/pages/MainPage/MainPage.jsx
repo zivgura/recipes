@@ -13,7 +13,8 @@ export function MainPage({
   allCats,
   allTags,
   tagEmoji,
-  onRefreshFromDrive
+  onRefreshFromDrive,
+  logout
 }) {
   const [search, setSearch] = useState('')
   const [activeTag, setActiveTag] = useState(null)
@@ -36,6 +37,15 @@ export function MainPage({
   return (
     <div className='main-page' dir='rtl'>
       <div className='main-page__header-wrap'>
+        <div className='main-page__header-logout'>
+          <button
+            type='button'
+            className='main-page__header-logout-btn'
+            onClick={() => logout()}
+          >
+            התנתק
+          </button>
+        </div>
         <div className='main-page__intro'>
           <img src={logo} alt='Logo' className='main-page__logo' />
           <img src={icon} alt='Icon' className='main-page__icon' />

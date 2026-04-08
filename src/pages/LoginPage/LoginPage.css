@@ -1,0 +1,49 @@
+.login-page.app-fullscreen {
+  background-color: var(--background-page);
+  background-image: url(../../assets/login.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.login-page .app-auth-label {
+  font-size: var(--font-size-small);
+  font-weight: 800;
+  color: transparent;
+}
+
+.login-page__footer-actions {
+  position: absolute;
+  bottom: 10vh;
+  right: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  font-family: var(--font-family-secondary);
+}
+
+.login-page__btn-primary {
+  color: var(--background-white);
+  border: none;
+  border-radius: 22px;
+  padding: 16px 44px;
+  font-size: var(--font-size-xxxx-large);
+  font-family: var(--font-family-secondary);
+  font-weight: 700;
+  cursor: pointer;
+  background: linear-gradient(90deg, #3bb4a7 0%, #2c9f92 100%);
+  width: 300px;
+  line-height: 24px;
+}
+
+.login-page .app-link-muted {
+  font-size: var(--font-size-medium);
+  color: var(--primary-dark);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.login-page .app-link-muted:hover {
+  opacity: 0.85;
+}

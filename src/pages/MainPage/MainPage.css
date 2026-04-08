@@ -13,6 +13,23 @@
   margin-bottom: 2em;
 }
 
+.main-page__header-logout {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.main-page__header-logout-btn {
+  background: none;
+  border: none;
+  color: var(--primary-dark);
+  font-size: var(--font-size-small);
+  font-weight: 400;
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .main-page__intro {
   display: flex;
   flex-direction: column;
@@ -74,11 +91,12 @@
   border: none;
   background: none;
   font: inherit;
-  color: var(--text-primary);
+  color: var(--primary-dark);
   cursor: pointer;
   font-size: var(--font-size-small);
   text-decoration: underline;
-  text-underline-offset: 3px;
+  text-underline-offset: 2px;
+  padding-right: 24px;
 }
 
 .main-page__sync:hover {
