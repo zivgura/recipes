@@ -334,7 +334,7 @@
 }
 
 .recipe-page__card--block {
-  padding: 22px 20px;
+  padding: 14px 24px;
   margin-bottom: 16px;
 }
 
@@ -359,16 +359,28 @@
 }
 
 .recipe-page__count {
-  font-size: var(--font-size-small);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-medium);
   font-weight: 700;
-  color: var(--color-brand);
+  color: var(--text-secondary);
+}
+
+.recipe-heading-ingredients {
+  color: var(--text-primary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-medium);
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .recipe-page__reset {
   background: none;
   border: none;
-  color: var(--color-text-muted);
-  font-size: var(--font-size-small);
+  color: var(--text-secondary);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-medium);
   font-weight: 700;
   cursor: pointer;
   font-family: inherit;
@@ -390,17 +402,18 @@
   padding: 11px 16px;
   border-radius: 16px;
   cursor: pointer;
-  background: var(--color-surface-elevated);
+  background: var(--background-light);
   opacity: 1;
   transition: all 0.18s;
+  font-family: var(--font-family-secondary);
 }
 
 .recipe-page__ing--checked {
-  background: var(--color-surface-checked);
-  opacity: 0.55;
+  background: var(--background-light);
+  opacity: 0.33;
 }
 
-.recipe-page__ing-left {
+.recipe-page__ing-label {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -409,9 +422,9 @@
 .recipe-page__ing-check {
   width: 20px;
   height: 20px;
-  border-radius: 7px;
+  border-radius: 6px;
   flex-shrink: 0;
-  border: 2px solid var(--color-text-muted);
+  border: 2px solid var(--primary-main);
   background: transparent;
   display: flex;
   align-items: center;
@@ -420,33 +433,24 @@
 }
 
 .recipe-page__ing-check--on {
-  border-color: var(--color-brand);
-  background: var(--color-brand);
-}
-
-.recipe-page__ing-check-mark {
-  font-size: 11px;
-  color: var(--color-text-on-brand);
-  font-weight: 900;
-  line-height: 1;
+  background: var(--primary-main);
 }
 
 .recipe-page__ing-name {
-  font-size: var(--font-size-medium);
-  font-weight: 700;
-  color: var(--color-text);
   transition: all 0.18s;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--font-size-large);
 }
 
 .recipe-page__ing-name--checked {
-  color: var(--color-text-muted);
   text-decoration: line-through;
 }
 
 .recipe-page__ing-amt {
-  font-size: var(--font-size-small);
-  font-weight: 800;
-  color: var(--color-brand);
+  font-size: var(--font-size-large);
+  font-weight: 600;
+  color: var(--text-secondary);
   white-space: nowrap;
   margin-right: 8px;
   display: flex;
@@ -458,7 +462,7 @@
 }
 
 .recipe-page__ing-amt--checked {
-  color: var(--color-text-muted);
+  text-decoration: line-through;
 }
 
 .recipe-page__steps-list {
