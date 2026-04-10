@@ -33,7 +33,7 @@
   font-family: var(--font-family-secondary);
   font-weight: 700;
   cursor: pointer;
-  background: linear-gradient(90deg, #3bb4a7 0%, #2c9f92 100%);
+  background: var(--button-gradient);
   width: 300px;
   line-height: 24px;
 }

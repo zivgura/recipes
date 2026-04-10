@@ -19,13 +19,21 @@ export function RecipePage({ recipe, onBack }) {
   const [checkedIngs, setCheckedIngs] = useState({})
   // const [recipeLayout, setRecipeLayout] = useState('combined')
   const [recipeTab, setRecipeTab] = useState('ingredients')
+  const [recipeDoneDismissed, setRecipeDoneDismissed] = useState(false)
   const isSplit = true
   const showIngredients = !isSplit || recipeTab === 'ingredients'
   const showDirections = !isSplit || recipeTab === 'directions'
-  const toggleStepDone = id => setDone(d => ({ ...d, [id]: !d[id] }))
+  const totalSteps = recipe.sections.reduce((a, s) => a + s.steps.length, 0)
+  const toggleStepDone = id =>
+    setDone(d => {
+      const next = { ...d, [id]: !d[id] }
+      if (Object.values(next).filter(Boolean).length < totalSteps) {
+        setRecipeDoneDismissed(false)
+      }
+      return next
+    })
   const toggleIngredientChecked = id =>
     setCheckedIngs(d => ({ ...d, [id]: !d[id] }))
-  const totalSteps = recipe.sections.reduce((a, s) => a + s.steps.length, 0)
   const doneCount = Object.values(done).filter(Boolean).length
   const progress = doneCount / totalSteps
   const checkedIngCount = Object.values(checkedIngs).filter(Boolean).length
@@ -325,7 +333,10 @@ export function RecipePage({ recipe, onBack }) {
                 <button
                   type='button'
                   className='recipe-page__reset'
-                  onClick={() => setDone({})}
+                  onClick={() => {
+                    setDone({})
+                    setRecipeDoneDismissed(false)
+                  }}
                 >
                   <RotateCcw size={12} /> איפוס
                 </button>
@@ -359,11 +370,12 @@ export function RecipePage({ recipe, onBack }) {
                 )
               })}
             </div>
-
-            {progress === 1 && <RecipeDone recipeTitle={recipe.title} />}
           </div>
         </div>
       </div>
+      {progress === 1 && !recipeDoneDismissed && (
+        <RecipeDone onClose={() => setRecipeDoneDismissed(true)} />
+      )}
     </div>
   )
 }

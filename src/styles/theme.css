@@ -10,6 +10,8 @@
 
   --primary-accent: #3CB9AB;
   --primary-accent-light: #D4F3EE;
+  --button-gradient: linear-gradient(90deg, #3BB4A7 0%, #2C9F92 100%);
+
 
   --border-light: #5DC5B5;
   --border-lighter: #EBF5F4;

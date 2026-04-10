@@ -1,10 +1,14 @@
 .recipe-done {
+  max-width: 340px;
   text-align: center;
-  padding: 28px 20px;
-  margin-top: 16px;
-  background: var(--primary-light);
+  padding: 36px 28px 32px;
+  background: var(--background-white);
   border-radius: 22px;
-  border: 1.5px solid var(--primary-mid);
+  border: 1px solid var(--primary-main);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
 }
 
 .recipe-done__emoji {
@@ -13,7 +17,29 @@
 }
 
 .recipe-done__title {
-  font-size: 17px;
-  font-weight: 900;
+  font-size: var(--font-size-xxxx-large);
+  font-weight: 700;
   color: var(--primary-dark);
+  margin: 0;
+  font-family: var(--font-family-secondary);
+}
+
+.recipe-done__description {
+  font-size: var(--font-size-large);
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0;
+  font-family: var(--font-family-secondary);
+}
+
+.recipe-done__button {
+  background: var(--button-gradient);
+  color: var(--background-white);
+  border: none;
+  border-radius: 20px;
+  padding: 12px 24px;
+  font-size: var(--font-size-large);
+  font-weight: 700;
+  cursor: pointer;
+  font-family: var(--font-family-secondary);
 }

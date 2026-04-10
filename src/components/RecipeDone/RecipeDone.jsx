@@ -1,10 +1,25 @@
-import "./RecipeDone.css";
+import { Modal } from '../Modal/Modal.jsx'
+import './RecipeDone.css'
 
-export function RecipeDone({ recipeTitle }) {
+export function RecipeDone({ onClose }) {
   return (
-    <div className="recipe-done">
-      <div className="recipe-done__emoji">🎉</div>
-      <p className="recipe-done__title">{recipeTitle} מוכן!</p>
-    </div>
-  );
+    <Modal
+      onClose={onClose}
+      titleId='recipe-done-title'
+      panelClassName='recipe-done'
+    >
+      {/* <div className='recipe-done__emoji'>🎉</div> */}
+      <p id='recipe-done-title' className='recipe-done__title'>
+        כל הכבוד!
+      </p>
+      <p id='recipe-done-description' className='recipe-done__description'>
+        סיימת את המתכון בהצלחה!
+        <br />
+        שיהיה בתיאבון!
+      </p>
+      <button type='button' className='recipe-done__button' onClick={onClose}>
+        ביייי
+      </button>
+    </Modal>
+  )
 }
