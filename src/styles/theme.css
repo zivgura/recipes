@@ -13,6 +13,7 @@
 
   --border-light: #5DC5B5;
   --border-lighter: #EBF5F4;
+  --stroke-steps-divider-and-tabs: #5DC5B554;
 
   --text-primary: #26272a;
   --text-secondary: #656585;
@@ -71,6 +72,7 @@
 
   /* Shadows */
   --shadow-search: 0px 0px 13px 0px #5c6db31c;
+  --shadow-step: 0px 0px 16px 2px #EBF5F4B0;
 
   /* Misc */
   --color-white: #ffffff;

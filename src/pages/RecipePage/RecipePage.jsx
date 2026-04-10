@@ -17,9 +17,9 @@ export function RecipePage({ recipe, onBack }) {
   const [scale, setScale] = useState(1)
   const [done, setDone] = useState({})
   const [checkedIngs, setCheckedIngs] = useState({})
-  const [recipeLayout, setRecipeLayout] = useState('combined')
+  // const [recipeLayout, setRecipeLayout] = useState('combined')
   const [recipeTab, setRecipeTab] = useState('ingredients')
-  const isSplit = recipeLayout === 'split'
+  const isSplit = true
   const showIngredients = !isSplit || recipeTab === 'ingredients'
   const showDirections = !isSplit || recipeTab === 'directions'
   const toggleStepDone = id => setDone(d => ({ ...d, [id]: !d[id] }))
@@ -30,6 +30,7 @@ export function RecipePage({ recipe, onBack }) {
   const progress = doneCount / totalSteps
   const checkedIngCount = Object.values(checkedIngs).filter(Boolean).length
   const heroRef = useRef(null)
+  const [toolbarScrolled, setToolbarScrolled] = useState(false)
 
   const edgeBack = useSwipeable({
     onSwipedRight: e => {
@@ -53,9 +54,11 @@ export function RecipePage({ recipe, onBack }) {
 
     const SCROLL_START = 10
     const SCROLL_RANGE = 200
+    const TOOLBAR_SCROLL_PX = 12
 
     const onScroll = () => {
       const y = window.scrollY
+      setToolbarScrolled(y > TOOLBAR_SCROLL_PX)
       const t = Math.min(1, Math.max(0, (y - SCROLL_START) / SCROLL_RANGE))
       hero.style.setProperty('--recipe-hero-shrink', t.toFixed(4))
     }
@@ -67,16 +70,48 @@ export function RecipePage({ recipe, onBack }) {
 
   return (
     <div className='recipe-page' {...edgeBack}>
-      <div className='recipe-page__toolbar'>
-        <div className='recipe-page__toolbar-start'>
-          <button type='button' onClick={onBack} className='recipe-page__back'>
-            <ArrowRight size={17} strokeWidth={2.5} /> כל המתכונים
-          </button>
+      <div
+        className={`recipe-page__toolbar-wrap${toolbarScrolled ? ' recipe-page__toolbar-wrap--scrolled' : ''}`}
+      >
+        <div className='recipe-page__toolbar'>
+          <div className='recipe-page__toolbar-start'>
+            <button
+              type='button'
+              onClick={onBack}
+              className='recipe-page__back'
+            >
+              <ArrowRight size={24} strokeWidth={2} />
+            </button>
+            {toolbarScrolled && (
+              <div className='recipe-page__toolbar-title' title={recipe.title}>
+                {recipe.title}
+              </div>
+            )}
+          </div>
+          <div
+            className={`recipe-page__toolbar-center${toolbarScrolled && doneCount > 0 ? ' recipe-page__toolbar-center--stacked' : ''}`}
+            dir='rtl'
+          >
+            {!toolbarScrolled && doneCount > 0 && (
+              <div className='recipe-page__progress-wrap'>
+                <div className='recipe-page__progress-track'>
+                  <div
+                    className='recipe-page__progress-fill'
+                    style={{ width: `${progress * 100}%` }}
+                  />
+                </div>
+                <span className='recipe-page__progress-label'>
+                  {doneCount}/{totalSteps}
+                </span>
+              </div>
+            )}
+          </div>
+          <div className='recipe-page__toolbar-end' aria-hidden='true' />
         </div>
-        <div className='recipe-page__toolbar-center'>
-          {doneCount > 0 && (
-            <div className='recipe-page__progress-wrap'>
-              <div className='recipe-page__progress-track'>
+        <div className='recipe-page__toolbar-bottom'>
+          {toolbarScrolled && doneCount > 0 && (
+            <div className='recipe-page__long-progress-wrap'>
+              <div className='recipe-page__long-progress-track'>
                 <div
                   className='recipe-page__progress-fill'
                   style={{ width: `${progress * 100}%` }}
@@ -88,46 +123,10 @@ export function RecipePage({ recipe, onBack }) {
             </div>
           )}
         </div>
-        <div className='recipe-page__toolbar-end' aria-hidden='true' />
       </div>
-
-      <div className='recipe-page__content' dir='rtl'>
-        <div
-          ref={heroRef}
-          className='recipe-page__card recipe-page__card--hero'
-        >
-          {/* <div className="recipe-page__emoji">{recipe.emoji}</div> */}
-          <div className='recipe-page__title-wrap'>
-            <h1 className='recipe-page__title'>{recipe.title}</h1>
-            <div className='recipe-page__scale'>
-              {/* <span className="recipe-page__scale-label">כמות המתכון:</span> */}
-              <button
-                type='button'
-                className='recipe-page__scale-btn'
-                onClick={() => setScale(s => Math.max(0.5, s - 0.5))}
-              >
-                −
-              </button>
-              <span className='recipe-page__scale-value'>
-                <span>×</span>
-                <span className='recipe-page__scale-value-amount'>
-                  {fmtAmt(1, scale)}
-                </span>
-              </span>
-              <button
-                type='button'
-                className='recipe-page__scale-btn'
-                onClick={() => setScale(s => s + 0.5)}
-              >
-                +
-              </button>
-            </div>
-          </div>
-
-          {(recipe.note ?? '').trim() ? (
-            <p className='recipe-page__note'>{recipe.note}</p>
-          ) : null}
-
+      <div ref={heroRef} className='recipe-page__hero'>
+        <div className='recipe-page__title-wrap'>
+          <div className='recipe-page__title'>{recipe.title}</div>
           <div className='recipe-page__tags'>
             {recipeCategoryList(recipe).map((c, i) => (
               <span
@@ -137,7 +136,6 @@ export function RecipePage({ recipe, onBack }) {
                 {c}
               </span>
             ))}
-            {/* <span className="recipe-page__tag recipe-page__tag--muted">⏱ {recipe.cookTime}</span> */}
             {recipe.tags.map(t => (
               <span
                 key={t}
@@ -147,8 +145,35 @@ export function RecipePage({ recipe, onBack }) {
               </span>
             ))}
           </div>
+        </div>
+        <div className='recipe-page__scale'>
+          <button
+            type='button'
+            className='recipe-page__scale-btn'
+            onClick={() => setScale(s => s + 0.5)}
+          >
+            +
+          </button>
+          <span className='recipe-page__scale-value'>
+            <span>×</span>
+            <span className='recipe-page__scale-value-amount'>
+              {fmtAmt(1, scale)}
+            </span>
+          </span>
+          <button
+            type='button'
+            className='recipe-page__scale-btn'
+            onClick={() => setScale(s => Math.max(0.5, s - 0.5))}
+          >
+            −
+          </button>
+        </div>
 
-          <div className='recipe-page__layout-wrap'>
+        {(recipe.note ?? '').trim() ? (
+          <p className='recipe-page__note'>{recipe.note}</p>
+        ) : null}
+
+        {/* <div className='recipe-page__layout-wrap'>
             <span
               className='recipe-page__layout-label'
               id='recipe-layout-label'
@@ -183,9 +208,9 @@ export function RecipePage({ recipe, onBack }) {
                 טאבים
               </button>
             </div>
-          </div>
-        </div>
-
+          </div> */}
+      </div>
+      <div className='recipe-page__content' dir='rtl'>
         {isSplit && (
           <div
             className='recipe-page__tab-bar recipe-page__tab-bar--content'
@@ -290,7 +315,7 @@ export function RecipePage({ recipe, onBack }) {
           </div>
 
           <div
-            className='recipe-page__card recipe-page__card--steps'
+            className='recipe-page__steps'
             id='recipe-panel-directions'
             role={isSplit ? 'tabpanel' : 'region'}
             aria-labelledby={
@@ -299,9 +324,7 @@ export function RecipePage({ recipe, onBack }) {
             hidden={isSplit ? !showDirections : undefined}
           >
             <div className='recipe-page__block-header'>
-              <h4 className='recipe-page__h2' id='recipe-heading-directions'>
-                הוראות
-              </h4>
+              <div className='recipe-heading-directions'>הוראות הכנה</div>
               {doneCount > 0 && (
                 <button
                   type='button'

@@ -3,15 +3,3 @@
   flex-direction: column;
   gap: 8px;
 }
-
-.recipe-section--offset {
-  margin-top: 18px;
-}
-
-.recipe-section__heading {
-  font-size: var(--font-size-large);
-  font-weight: 900;
-  color: var(--color-text);
-  margin: 0 0 4px;
-  letter-spacing: -0.2px;
-}

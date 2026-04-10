@@ -1,14 +1,12 @@
-import "./Section.css";
+import './Section.css'
 
-export function Section({ showHeading, headingText, secIndex, children }) {
+export function Section({ showHeading, headingText, children }) {
   return (
-    <div
-      className={`recipe-section${secIndex > 0 ? " recipe-section--offset" : ""}`}
-    >
+    <div className='recipe-section'>
       {showHeading && (
-        <h3 className="recipe-section__heading">{headingText}</h3>
+        <div className='recipe-section__heading'>{headingText}</div>
       )}
       {children}
     </div>
-  );
+  )
 }

@@ -6,11 +6,13 @@
   border: 1px solid var(--border-lighter);
   transition: all 0.18s;
   opacity: 1;
+  box-shadow: var(--shadow-step);
+  font-family: var(--font-family-secondary);
 }
 
 .recipe-step--done {
-  border-color: var(--border-light);
-  opacity: 0.66;
+  border-color: var(--stroke-steps-divider-and-tabs);
+  box-shadow: none;
 }
 
 .recipe-step__row {
@@ -36,7 +38,7 @@
 
 .recipe-step__badge--done {
   background: var(--primary-accent);
-  font-size: 15px;
+  font-size: var(--font-size-medium);
   color: var(--background-white);
 }
 
@@ -44,15 +46,18 @@
   flex: 1;
 }
 
+.recipe-step__body--done {
+  opacity: 0.66;
+}
+
 .recipe-step__text {
-  font-size: 15px;
+  font-size: var(--font-size-medium);
   font-weight: 600;
-  color: var(--color-text);
-  line-height: 1.65;
+  color: var(--text-primary);
+  line-height: 20px;
   text-decoration: none;
 }
 
 .recipe-step__text--done {
-  color: var(--color-text-muted);
   text-decoration: line-through;
 }
