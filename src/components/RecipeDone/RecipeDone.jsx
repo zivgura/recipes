@@ -1,7 +1,17 @@
+import { useEffect } from 'react'
 import { Modal } from '../Modal/Modal.jsx'
+import {
+  fireCelebrationConfetti,
+  resetConfetti,
+} from '../../utils/confettiCelebration.js'
 import './RecipeDone.css'
 
 export function RecipeDone({ onClose }) {
+  useEffect(() => {
+    fireCelebrationConfetti()
+    return () => resetConfetti()
+  }, [])
+
   return (
     <Modal
       onClose={onClose}
