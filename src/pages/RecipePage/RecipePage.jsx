@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react'
 import { useSwipeable } from 'react-swipeable'
 import { ArrowRight, RotateCcw } from 'lucide-react'
 import { fmtAmt } from '../../utils/recipeUtils.js'
@@ -39,6 +39,41 @@ export function RecipePage({ recipe, onBack }) {
   const checkedIngCount = Object.values(checkedIngs).filter(Boolean).length
   const heroRef = useRef(null)
   const [toolbarScrolled, setToolbarScrolled] = useState(false)
+  const tabBarRef = useRef(null)
+  const tabIngredientsRef = useRef(null)
+  const tabDirectionsRef = useRef(null)
+  const [tabIndicator, setTabIndicator] = useState({ left: 0, width: 0 })
+
+  const updateTabIndicator = useCallback(() => {
+    const bar = tabBarRef.current
+    const tab =
+      recipeTab === 'ingredients'
+        ? tabIngredientsRef.current
+        : tabDirectionsRef.current
+    if (!bar || !tab) return
+    const barRect = bar.getBoundingClientRect()
+    const tabRect = tab.getBoundingClientRect()
+    setTabIndicator({
+      left: tabRect.left - barRect.left,
+      width: tabRect.width
+    })
+  }, [recipeTab])
+
+  useLayoutEffect(() => {
+    updateTabIndicator()
+  }, [updateTabIndicator])
+
+  useEffect(() => {
+    const bar = tabBarRef.current
+    if (!bar) return
+    const ro = new ResizeObserver(() => updateTabIndicator())
+    ro.observe(bar)
+    window.addEventListener('resize', updateTabIndicator)
+    return () => {
+      ro.disconnect()
+      window.removeEventListener('resize', updateTabIndicator)
+    }
+  }, [updateTabIndicator])
 
   const edgeBack = useSwipeable({
     onSwipedRight: e => {
@@ -217,11 +252,21 @@ export function RecipePage({ recipe, onBack }) {
       <div className='recipe-page__content' dir='rtl'>
         {isSplit && (
           <div
+            ref={tabBarRef}
             className='recipe-page__tab-bar recipe-page__tab-bar--content'
             role='tablist'
             aria-label='מצרכים והוראות'
           >
+            <span
+              className='recipe-page__tab-indicator'
+              aria-hidden
+              style={{
+                left: tabIndicator.left,
+                width: tabIndicator.width
+              }}
+            />
             <button
+              ref={tabIngredientsRef}
               type='button'
               role='tab'
               id='recipe-tab-ingredients'
@@ -233,6 +278,7 @@ export function RecipePage({ recipe, onBack }) {
               מצרכים
             </button>
             <button
+              ref={tabDirectionsRef}
               type='button'
               role='tab'
               id='recipe-tab-directions'
