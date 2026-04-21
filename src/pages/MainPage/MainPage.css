@@ -148,6 +148,33 @@
   border-color: var(--color-brand);
 }
 
+.main-page__search-wrap--clearable .main-page__search {
+  padding-left: 40px;
+}
+
+.main-page__search-clear {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  border-radius: 50%;
+  line-height: 0;
+  font-family: inherit;
+}
+
+.main-page__search-clear:hover {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.06);
+}
+
 .main-page__filters-wrap {
   position: relative;
   margin-left: -20px;

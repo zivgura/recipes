@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Search } from 'lucide-react'
+import { Search, X } from 'lucide-react'
 import { tagLabel, recipeCategoryList } from '../../lib/recipeCatalog.js'
 import { RecipeRow } from '../../components/RecipeRow/RecipeRow.jsx'
 import CategoryIcon from '../../components/CategoryIcon/CategoryIcon.jsx'
@@ -56,7 +56,9 @@ export function MainPage({
           <span className='main-page__subtitle-greeting'>היי שלום</span>
           <span className='main-page__subtitle-text'>מה נבשל היום?</span>
         </div>
-        <div className='main-page__search-wrap'>
+        <div
+          className={`main-page__search-wrap${search ? ' main-page__search-wrap--clearable' : ''}`}
+        >
           <span className='main-page__search-icon'>
             <Search size={16} />
           </span>
@@ -66,6 +68,16 @@ export function MainPage({
             placeholder='חיפוש לפי שם / מצרכים'
             className={`main-page__search${search ? ' main-page__search--active' : ''}`}
           />
+          {search ? (
+            <button
+              type='button'
+              className='main-page__search-clear'
+              onClick={() => setSearch('')}
+              aria-label='נקה חיפוש'
+            >
+              <X size={16} strokeWidth={2.25} />
+            </button>
+          ) : null}
         </div>
 
         <div className='main-page__filters-wrap'>
